@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>DJANGO CKEDITOR</h1>
+<section>
+    {% for item in data %}
+        <h1>{{item.name}}</h1>
+        <p>{{item.body|safe}}</p>
+    {% endfor%}
+</section>
+</body>
+</html>
