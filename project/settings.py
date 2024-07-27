@@ -47,6 +47,12 @@ CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_CONFIGS = {
     'default':{
         'toolbar': 'full',
+        'removePlugins': 'exportpdf',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet', 'widget', 'html5video',
+            ]
+        ),
     }
 }
 
@@ -129,10 +135,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIR = os.path.join(BASE_DIR,'static')
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles_build','static')
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
 # Default primary key field type

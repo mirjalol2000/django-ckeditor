@@ -3,14 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/devibeans-light.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/languages/applescript.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script type="text/javascript">
+        function getToken(name) {
+            var cookievalue = null;
+            if (document.cookie && document.cookie !='') {
+                var cookies = document.cookie.split(';');
+                for (var i=0; i<cookies.length; i++){
+                    var cookie = cookies[i].trim();
+                    if (cookie.substring(0,name.length+1) == (name+'=')) {
+                        cookieValue = decodeURIComponent(cookie.subtring(name.length+1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getToken('csrftoken')
+    </script>
 </head>
 <body>
+<style>
+    .post{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5%;
+    }
+    .card{
+        border: 2px solid black;
+        margin-bottom: 10px;
+    }
+    h42,h1{
+        text-align: center;
+    }
+    .blog-form{
+        display: grid;
+        justify-content: center;
+    }
+</style>
+
 <h1>DJANGO CKEDITOR</h1>
-<section>
+<section class="post">
     {% for item in data %}
-        <h1>{{item.name}}</h1>
-        <p>{{item.body|safe}}</p>
+        <div class="card">
+            <h1>{{item.name}}</h1>
+            <p>{{item.body|safe}}</p>
+        </div>
     {% endfor%}
+</section>
+<section class="blog-form">
+    <h2>Blog Form</h2>
+    <form method="post">
+        {%csrf_token%}
+        {{form.media}}
+        {{form.as_p}}
+
+        <button type="submit">Submit</button>
+    </form>
 </section>
 </body>
 </html>
